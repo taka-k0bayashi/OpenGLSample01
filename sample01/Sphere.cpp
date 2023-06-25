@@ -31,11 +31,6 @@ Sphere::Sphere(GLsizei vertex_count, const Vertex* vertex, GLsizei edge_count, c
 	this->program.attach_shader(vsrc.data(), GL_VERTEX_SHADER);
 	this->program.attach_shader(fsrc.data(), GL_FRAGMENT_SHADER);
 	this->program.link();
-
-	for (int i = 0; i < vertex_count; ++i)
-	{
-		std::cout << vertex[i].position[0] << " " << vertex[i].position[1] << " " << vertex[i].position[2] << " " << std::endl;
-	}
 }
 
 Sphere::~Sphere()
@@ -49,8 +44,6 @@ void Sphere::draw() const
 	this->program.use();
 
 	glBindVertexArray(vao);
-
-	//glDrawArrays(GL_LINES, 0, 5);
 
 	this->program.uniformMat4fv("proj_mat", 1, GL_FALSE, &(this->proj_mat[0][0]));
 
