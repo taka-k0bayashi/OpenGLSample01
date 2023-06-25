@@ -21,14 +21,6 @@ public:
 
 	void unuse() const;
 
-	GLint get_uniform_location(const char* var_name);
-
-	void uniform2f(const char* var_name, GLfloat v0, GLfloat v1) const;
-	// count îzóÒêî
-	void uniform2fv(const char* var_name, GLsizei count, const GLfloat* value) const;
-
-	void uniform1f(const char* var_name, GLfloat value) const;
-
 	void uniformMat4fv(const char* var_name, GLsizei count, GLboolean transpose, const GLfloat* value) const;
 
 	static bool readShaderSource(const char* name, std::vector<GLchar>& buffer);

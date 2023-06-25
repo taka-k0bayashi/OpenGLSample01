@@ -36,31 +36,6 @@ void ShaderProgram::unuse() const
 	glUseProgram(0);
 }
 
-GLint ShaderProgram::get_uniform_location(const char* var_name)
-{
-	return glGetUniformLocation(this->program, var_name);
-}
-
-void ShaderProgram::uniform2f(const char* var_name, GLfloat v0, GLfloat v1) const
-{
-	GLint location = glGetUniformLocation(this->program, var_name);
-	glUniform2f(location, v0, v1);
-}
-
-// count ”z—ñ”
-
-void ShaderProgram::uniform2fv(const char* var_name, GLsizei count, const GLfloat* value) const
-{
-	GLint location = glGetUniformLocation(this->program, var_name);
-	glUniform2fv(location, count, value);
-}
-
-void ShaderProgram::uniform1f(const char* var_name, GLfloat value) const
-{
-	GLint location = glGetUniformLocation(this->program, var_name);
-	glUniform1f(location, value);
-}
-
 void ShaderProgram::uniformMat4fv(const char* var_name, GLsizei count, GLboolean transpose, const GLfloat* value) const
 {
 	GLint location = glGetUniformLocation(this->program, var_name);

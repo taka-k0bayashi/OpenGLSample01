@@ -4,7 +4,6 @@
 #include <GLFW/glfw3.h> 
 #include <GL/glut.h>
 #include <vector>
-#include <fstream>
 #include <memory>
 #include "Window.h"
 #include "ShaderProgram.h"
@@ -16,20 +15,6 @@
 
 namespace
 {
-
-	const std::vector<Sphere::Vertex>& get_vertex()
-	{
-		static std::vector<Sphere::Vertex> vertices;
-
-		vertices.push_back({ {0,0,1}, {1,0,0} });
-		vertices.push_back({ {1,0,0}, {0.5,1.0 ,0.5} });
-		vertices.push_back({ {0,1,0}, {0.5,1.0 ,0.5} });
-		vertices.push_back({ {-1,0,0}, {0.5,1.0 ,0.5} });
-		vertices.push_back({ {0,-1,0}, {0.5,1.0 ,0.5} });
-		vertices.push_back({ {0,0,-1}, {0, 0 ,1} });
-		return vertices;
-	}
-
 	void lookAt(float ex, float ey, float ez,
 		float tx, float ty, float tz,
 		float ux, float uy, float uz,
@@ -99,6 +84,41 @@ namespace
 		matrix[1] = matrix[2] = matrix[3] = matrix[4] =
 			matrix[6] = matrix[7] = matrix[12] = matrix[13] = matrix[15] = 0.0f;
 	}
+
+	const std::vector<Sphere::Vertex>& get_vertices()
+	{
+		static std::vector<Sphere::Vertex> vertices =
+		{
+			{ {0,0,1}, {1,0,0} },
+			{ {1,0,0}, {0.5,1.0 ,0.5} },
+			{ {0,1,0}, {0.5,1.0 ,0.5} },
+			{ {-1,0,0}, {0.5,1.0 ,0.5} },
+			{ {0,-1,0}, {0.5,1.0 ,0.5} },
+			{ {0,0,-1}, {0, 0 ,1} }
+		};
+		return vertices;
+	}
+
+	const std::vector<Sphere::Edge>& get_edges()
+	{
+		static std::vector<Sphere::Edge> edges =
+		{
+			{ 0,1 },
+			{ 0,2 },
+			{ 0,3 },
+			{ 0,4 },
+			{ 1,2 },
+			{ 2,3 },
+			{ 3,4 },
+			{ 4,1 },
+			{ 1,5 },
+			{ 2,5 },
+			{ 3,5 },
+			{ 4,5 }
+		};
+		return edges;
+	}
+
 }
 
 int main() {
@@ -117,35 +137,13 @@ int main() {
 	//îwåiêF
 	glClearColor(1, 1, 1, 0);
 
-	std::vector<Sphere::Vertex> vertices;
-	vertices.push_back({ {0,0,1}, {1,0,0} });
-	vertices.push_back({ {1,0,0}, {0.5,1.0 ,0.5} });
-	vertices.push_back({ {0,1,0}, {0.5,1.0 ,0.5} });
-	vertices.push_back({ {-1,0,0}, {0.5,1.0 ,0.5} });
-	vertices.push_back({ {0,-1,0}, {0.5,1.0 ,0.5} });
-	vertices.push_back({ {0,0,-1}, {0, 0 ,1} });
-
-	std::vector<Sphere::Edge> edges;
-	edges.push_back({ 0,1 });
-	edges.push_back({ 0,2 });
-	edges.push_back({ 0,3 });
-	edges.push_back({ 0,4 });
-	edges.push_back({ 1,2 });
-	edges.push_back({ 2,3 });
-	edges.push_back({ 3,4 });
-	edges.push_back({ 4,1 });
-	edges.push_back({ 1,5 });
-	edges.push_back({ 2,5 });
-	edges.push_back({ 3,5 });
-	edges.push_back({ 4,5 });
-
 	glm::mat4 mat1;
 	perspectiveMatrix(-1.0f , 1.0f, -1.0f, 1.0f , 7.0f, 20.0f, &(mat1[0][0]));
 	glm::mat4 mat2;
 	lookAt(5.0f, 7.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, &(mat2[0][0])); 
 	glm::mat4 proj_mat = mat1 * mat2;
 
-	std::unique_ptr<const Shape> sphere(new Sphere(vertices.size(), vertices.data(), edges.size(), edges.data(), proj_mat));
+	std::unique_ptr<const Shape> sphere(new Sphere(static_cast<GLsizei>(get_vertices().size()), get_vertices().data(), static_cast<GLsizei>(get_edges().size()), get_edges().data(), proj_mat));
 
 	while (window)
 	{

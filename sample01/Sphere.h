@@ -25,8 +25,8 @@ private:
 public:
 	struct Vertex
 	{
-		Vector position;
-		Vector color;
+		glm::vec3 position;
+		glm::vec3 color;
 	};
 
 	using Edge = std::array<GLuint, 2>;
