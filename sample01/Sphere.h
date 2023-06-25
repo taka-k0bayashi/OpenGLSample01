@@ -4,7 +4,6 @@
 #include <memory>
 #include <array>
 
-#include "Data.h"
 #include "Shape.h"
 #include "ShaderProgram.h"
 
@@ -29,7 +28,7 @@ public:
 		glm::vec3 color;
 	};
 
-	using Edge = std::array<GLuint, 2>;
+	using Edge = glm::ivec2;
 
 	Sphere(GLsizei vertex_count, const Vertex* vertex, GLsizei vertex_index_size, const Edge* edge, const glm::mat4& proj_mat);
 

@@ -50,9 +50,6 @@
     <ClInclude Include="Shape.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Data.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Sphere.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>

@@ -84,3 +84,9 @@ GLfloat Window::getScale() const
 {
 	return this->scale;
 }
+
+Window& get_window()
+{
+	static Window window(1000, 1000);
+	return window;
+}

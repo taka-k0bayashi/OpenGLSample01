@@ -1,6 +1,7 @@
 #include "Sphere.h"
 #include <vector>
-
+#include "Window.h"
+#include <glm/gtc/matrix_transform.hpp>
 
 Sphere::Sphere(GLsizei vertex_count, const Vertex* vertex, GLsizei edge_count, const Edge* edge, const glm::mat4& proj_mat) : vao(), vertex_vbo(), vertex_ibo(), program(), proj_mat(proj_mat)
 {
@@ -45,7 +46,9 @@ void Sphere::draw() const
 
 	glBindVertexArray(vao);
 
-	this->program.uniformMat4fv("proj_mat", 1, GL_FALSE, &(this->proj_mat[0][0]));
+	glm::mat4 mat = glm::scale(this->proj_mat, glm::vec3(1, 1, 1) * (get_window().getScale() / 100));
+
+	this->program.uniformMat4fv("proj_mat", 1, GL_FALSE, &(mat[0][0]));
 
 	glDrawElements(GL_LINES, 24, GL_UNSIGNED_INT, 0);
 

@@ -11,7 +11,7 @@ class Window
 	GLfloat size[2];
 	GLfloat scale;
 public:
-	Window(int width = 640, int height = 480, const char* title = "MyViewer");
+	Window(int width = 640, int height = 480, const char* title = "Sphere");
 
 	virtual	~Window();
 
@@ -28,3 +28,4 @@ public:
 	GLfloat getScale() const;
 };
 
+Window& get_window();
