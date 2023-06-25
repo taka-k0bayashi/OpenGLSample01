@@ -24,9 +24,9 @@ Sphere::Sphere(GLsizei vertex_count, const Vertex* vertex, GLsizei edge_count, c
 	glBindVertexArray(0);
 
 	std::vector<GLchar> vsrc;
-	const bool vstat(ShaderProgram::readShaderSource("draw.glsl", vsrc));
+	const bool vstat(ShaderProgram::readShaderSource("Sphere.vert", vsrc));
 	std::vector<GLchar> fsrc;
-	const bool fstat(ShaderProgram::readShaderSource("draw.frag", fsrc));
+	const bool fstat(ShaderProgram::readShaderSource("Sphere.frag", fsrc));
 
 	this->program.attach_shader(vsrc.data(), GL_VERTEX_SHADER);
 	this->program.attach_shader(fsrc.data(), GL_FRAGMENT_SHADER);

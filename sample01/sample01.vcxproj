@@ -135,9 +135,9 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="draw.frag" />
-    <None Include="draw.glsl" />
     <None Include="packages.config" />
+    <None Include="Sphere.frag" />
+    <None Include="Sphere.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.h" />

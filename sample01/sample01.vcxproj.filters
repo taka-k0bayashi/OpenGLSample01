@@ -33,10 +33,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="draw.glsl">
+    <None Include="Sphere.vert">
       <Filter>ソース ファイル\glsl</Filter>
     </None>
-    <None Include="draw.frag">
+    <None Include="Sphere.frag">
       <Filter>ソース ファイル\glsl</Filter>
     </None>
   </ItemGroup>

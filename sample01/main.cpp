@@ -1,8 +1,5 @@
 #include <cstdlib>
 #include <iostream>
-#include <GL/glew.h>
-#include <GLFW/glfw3.h> 
-#include <GL/glut.h>
 #include <vector>
 #include <memory>
 #include "Window.h"
@@ -25,31 +22,23 @@ namespace
 		tx = ex - tx;
 		ty = ey - ty;
 		tz = ez - tz;
-		l = sqrtf(tx * tx + ty * ty + tz * tz); /* Ç±ÇÃ l Ç∆, */
+		l = sqrtf(tx * tx + ty * ty + tz * tz);
 		matrix[2] = tx / l;
 		matrix[6] = ty / l;
 		matrix[10] = tz / l;
-
-		/* x é≤ = u x z é≤ */
 		tx = uy * matrix[10] - uz * matrix[6];
 		ty = uz * matrix[2] - ux * matrix[10];
 		tz = ux * matrix[6] - uy * matrix[2];
-		l = sqrtf(tx * tx + ty * ty + tz * tz); /* Ç±ÇÃ l. */
+		l = sqrtf(tx * tx + ty * ty + tz * tz);
 		matrix[0] = tx / l;
 		matrix[4] = ty / l;
 		matrix[8] = tz / l;
-
-		/* y é≤ = z é≤ x x é≤ */
 		matrix[1] = matrix[6] * matrix[8] - matrix[10] * matrix[4];
 		matrix[5] = matrix[10] * matrix[0] - matrix[2] * matrix[8];
 		matrix[9] = matrix[2] * matrix[4] - matrix[6] * matrix[0];
-
-		/* ïΩçsà⁄ìÆ */
 		matrix[12] = -(ex * matrix[0] + ey * matrix[4] + ez * matrix[8]);
 		matrix[13] = -(ex * matrix[1] + ey * matrix[5] + ez * matrix[9]);
 		matrix[14] = -(ex * matrix[2] + ey * matrix[6] + ez * matrix[10]);
-
-		/* écÇË */
 		matrix[3] = matrix[7] = matrix[11] = 0.0f;
 		matrix[15] = 1.0f;
 	}
