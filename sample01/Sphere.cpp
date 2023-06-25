@@ -50,7 +50,7 @@ void Sphere::draw() const
 
 	this->program.uniformMat4fv("proj_mat", 1, GL_FALSE, &(mat[0][0]));
 
-	glDrawElements(GL_LINES, 24, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_PATCHES, 24, GL_UNSIGNED_INT, 0);
 
 	this->program.unuse();
 }
