@@ -28,9 +28,15 @@ Sphere::Sphere(GLsizei vertex_count, const Vertex* vertex, GLsizei edge_count, c
 	const bool vstat(ShaderProgram::readShaderSource("Sphere.vert", vsrc));
 	std::vector<GLchar> fsrc;
 	const bool fstat(ShaderProgram::readShaderSource("Sphere.frag", fsrc));
+	std::vector<GLchar> tcsrc;
+	const bool tcstat(ShaderProgram::readShaderSource("Sphere.tesc", tcsrc));
+	std::vector<GLchar> tesrc;
+	const bool testat(ShaderProgram::readShaderSource("Sphere.tese", tesrc));
 
 	this->program.attach_shader(vsrc.data(), GL_VERTEX_SHADER);
 	this->program.attach_shader(fsrc.data(), GL_FRAGMENT_SHADER);
+	this->program.attach_shader(tcsrc.data(), GL_TESS_CONTROL_SHADER);
+	this->program.attach_shader(tesrc.data(), GL_TESS_EVALUATION_SHADER);
 	this->program.link();
 }
 
@@ -46,11 +52,19 @@ void Sphere::draw() const
 
 	glBindVertexArray(vao);
 
+	glPatchParameteri(GL_PATCH_VERTICES, 4);
+
 	glm::mat4 mat = glm::scale(this->proj_mat, glm::vec3(1, 1, 1) * (get_window().getScale() / 100));
 
 	this->program.uniformMat4fv("proj_mat", 1, GL_FALSE, &(mat[0][0]));
 
+	glPatchParameteri(GL_PATCH_VERTICES, 3);
+	//glDrawArrays(GL_PATCHES, 0, 6);
 	glDrawElements(GL_PATCHES, 24, GL_UNSIGNED_INT, 0);
 
 	this->program.unuse();
 }
+
+// https://qiita.com/reqko/items/ac67c51e3c4ee1109a46
+// https://www.nvidia.com/content/gtc-2010/pdfs/2227_gtc2010.pdf
+// https://learnopengl.com/Guest-Articles/2021/Tessellation/Tessellation

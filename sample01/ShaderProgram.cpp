@@ -52,7 +52,7 @@ bool ShaderProgram::readShaderSource(const char* name, std::vector<GLchar>& buff
 	std::ifstream file(name, std::ios::binary);
 	if (file.fail())
 	{
-		std::cerr << "Error: connot open source file: " << name << std::endl;
+		std::cerr << "Error: cannot open source file: " << name << std::endl;
 		return false;
 	}
 

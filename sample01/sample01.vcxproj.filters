@@ -39,6 +39,12 @@
     <None Include="Sphere.frag">
       <Filter>ソース ファイル\glsl</Filter>
     </None>
+    <None Include="Sphere.tesc">
+      <Filter>ソース ファイル\glsl</Filter>
+    </None>
+    <None Include="Sphere.tese">
+      <Filter>ソース ファイル\glsl</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
