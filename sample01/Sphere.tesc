@@ -2,8 +2,8 @@
 
 layout(vertices = 3) out;
 
-const float Outer = 2.0;
-const float Inner = 2.0;
+const float Outer = 5.0;
+const float Inner = 5.0;
 
 layout(location = 0)in vec3 in_color[];
 layout(location = 0)out vec3 out_color[];
