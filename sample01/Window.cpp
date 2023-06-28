@@ -29,6 +29,8 @@ Window::Window(int width, int height, const char* title)
 	glfwSetScrollCallback(window, wheel);
 
 	resize(this->window, width, height);
+
+	glEnable(GL_DEPTH_TEST);
 }
 
 Window::~Window()

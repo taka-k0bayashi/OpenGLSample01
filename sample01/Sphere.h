@@ -28,7 +28,7 @@ public:
 		glm::vec3 color;
 	};
 
-	using Edge = glm::ivec2;
+	using Edge = glm::ivec3;
 
 	Sphere(GLsizei vertex_count, const Vertex* vertex, GLsizei vertex_index_size, const Edge* edge, const glm::mat4& proj_mat);
 

@@ -16,10 +16,10 @@ namespace
 		static std::vector<Sphere::Vertex> vertices =
 		{
 			{ { 0, 0, 1}, {1.0,  0,  0} },
-			{ { 1, 0, 0}, {  0,1.0,0.0} },
+			{ { 1, 0, 0}, {1.0,1.0,0.0} },
 			{ { 0, 1, 0}, {  0,1.0,0.0} },
-			{ {-1, 0, 0}, {  0,1.0,0.0} },
-			{ { 0,-1, 0}, {  0,1.0,0.0} },
+			{ {-1, 0, 0}, {0.0,1.0,1.0} },
+			{ { 0,-1, 0}, {0.0,1.0,0.0} },
 			{ { 0, 0,-1}, {0.0,  0,1.0} }
 		};
 		return vertices;
@@ -29,18 +29,14 @@ namespace
 	{
 		static std::vector<Sphere::Edge> edges =
 		{
-			{ 0,1 },
-			{ 0,2 },
-			{ 0,3 },
-			{ 0,4 },
-			{ 1,2 },
-			{ 2,3 },
-			{ 3,4 },
-			{ 4,1 },
-			{ 1,5 },
-			{ 2,5 },
-			{ 3,5 },
-			{ 4,5 }
+			{ 0,1,2 },
+			{ 0,2,3 },
+			{ 0,3,4 },
+			{ 0,4,1 },
+			{ 5,1,2 },
+			{ 5,2,3 },
+			{ 5,3,4 },
+			{ 5,4,1 }
 		};
 		return edges;
 	}
@@ -64,7 +60,7 @@ auto main() -> int{
 	glClearColor(1, 1, 1, 0);
 
 	glm::mat4 mat1 = glm::perspective(glm::pi<float>() * 0.2f, 1.0f, 0.1f, 100.0f);
-	glm::mat4 mat2 = glm::lookAt(glm::vec3(2.0f, 3.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	glm::mat4 mat2 = glm::lookAt(glm::vec3(4.0f, 6.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	glm::mat4 proj_mat = mat1 * mat2;
 
 	std::unique_ptr<const Shape> sphere(new Sphere(static_cast<GLsizei>(get_vertices().size()), get_vertices().data(), static_cast<GLsizei>(get_edges().size()), get_edges().data(), proj_mat));
@@ -73,7 +69,7 @@ auto main() -> int{
 
 	while (get_window())
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		sphere->draw();
 
