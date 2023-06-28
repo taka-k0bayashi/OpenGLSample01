@@ -42,6 +42,12 @@ void ShaderProgram::uniformMat4fv(const char* var_name, GLsizei count, GLboolean
 	glUniformMatrix4fv(location, count, transpose, value);
 }
 
+void ShaderProgram::uniform1f(const char* var_name, const GLfloat value) const
+{
+	GLint location = glGetUniformLocation(this->program, var_name);
+	glUniform1f(location, value);
+}
+
 bool ShaderProgram::readShaderSource(const char* name, std::vector<GLchar>& buffer)
 {
 	if (name == nullptr)

@@ -23,6 +23,8 @@ public:
 
 	void uniformMat4fv(const char* var_name, GLsizei count, GLboolean transpose, const GLfloat* value) const;
 
+	void uniform1f(const char* var_name, const GLfloat value)const;
+
 	static bool readShaderSource(const char* name, std::vector<GLchar>& buffer);
 private:
 	GLboolean printProgramInfoLog(GLuint program) const;

@@ -53,10 +53,12 @@ void Sphere::draw() const
 	this->program.use();
 
 	glBindVertexArray(vao);
+	float scale = get_window().getScale()/100;
 
-	glm::mat4 mat = glm::scale(this->proj_mat, glm::vec3(1, 1, 1) * (get_window().getScale() / 100));
+	glm::mat4 mat = glm::scale(this->proj_mat, glm::vec3(1, 1, 1) * (scale));
 
 	this->program.uniformMat4fv("proj_mat", 1, GL_FALSE, &(mat[0][0]));
+	this->program.uniform1f("scale", scale);
 
 	glPatchParameteri(GL_PATCH_VERTICES, 3);
 	glDrawElements(GL_PATCHES, 24, GL_UNSIGNED_INT, 0);
