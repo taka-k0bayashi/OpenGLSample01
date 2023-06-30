@@ -46,6 +46,7 @@ Sphere::~Sphere()
 {
 	glDeleteVertexArrays(1, &this->vao);
 	glDeleteBuffers(1, &this->vertex_vbo);
+	glDeleteBuffers(1, &this->vertex_ibo);
 }
 
 void Sphere::draw() const
