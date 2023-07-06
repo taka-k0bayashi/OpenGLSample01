@@ -7,6 +7,7 @@ uniform mat4 proj_mat;
 
 layout(location = 0) in vec3 in_color[];
 layout(location = 0) out vec3 out_color;
+layout(location = 1) out vec4 position;
 
 vec4 normalize3(vec4 vec)
 {
@@ -16,15 +17,19 @@ vec4 normalize3(vec4 vec)
 void main()
 {
     gl_Position = proj_mat * normalize3(gl_in[0].gl_Position);
+    position = gl_in[0].gl_Position;
     out_color = in_color[0];
     EmitVertex();
     gl_Position = proj_mat * normalize3(gl_in[1].gl_Position);
+    position = gl_in[1].gl_Position;
     out_color = in_color[1];
     EmitVertex();
     gl_Position = proj_mat * normalize3(gl_in[2].gl_Position);
+    position = gl_in[2].gl_Position;
     out_color = in_color[2];
     EmitVertex();
     gl_Position = proj_mat * normalize3(gl_in[0].gl_Position);
+    position = gl_in[0].gl_Position;
     out_color = in_color[0];
     EmitVertex();
 
