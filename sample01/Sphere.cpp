@@ -22,8 +22,6 @@ Sphere::Sphere(GLsizei vertex_count, const Vertex* vertex, GLsizei edge_count, c
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->vertex_ibo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, edge_count * sizeof(Edge), edge, GL_STATIC_DRAW);
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
 	glBindVertexArray(0);
 
 	std::vector<GLchar> vsrc;
@@ -34,11 +32,14 @@ Sphere::Sphere(GLsizei vertex_count, const Vertex* vertex, GLsizei edge_count, c
 	const bool tcstat(ShaderProgram::readShaderSource("Sphere.tesc", tcsrc));
 	std::vector<GLchar> tesrc;
 	const bool testat(ShaderProgram::readShaderSource("Sphere.tese", tesrc));
+	std::vector<GLchar> gsrc;
+	const bool gstat(ShaderProgram::readShaderSource("Sphere.geom", gsrc));
 
 	this->program.attach_shader(vsrc.data(), GL_VERTEX_SHADER);
 	this->program.attach_shader(fsrc.data(), GL_FRAGMENT_SHADER);
 	this->program.attach_shader(tcsrc.data(), GL_TESS_CONTROL_SHADER);
 	this->program.attach_shader(tesrc.data(), GL_TESS_EVALUATION_SHADER);
+	this->program.attach_shader(gsrc.data(), GL_GEOMETRY_SHADER);
 	this->program.link();
 }
 
@@ -54,7 +55,7 @@ void Sphere::draw() const
 	this->program.use();
 
 	glBindVertexArray(vao);
-	float scale = get_window().getScale()/100;
+	float scale = get_window().getScale() / 100;
 
 	glm::mat4 mat = glm::scale(this->proj_mat, glm::vec3(1, 1, 1) * (scale));
 

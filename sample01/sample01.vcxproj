@@ -137,6 +137,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Sphere.frag" />
+    <None Include="Sphere.geom" />
     <None Include="Sphere.tesc" />
     <None Include="Sphere.tese" />
     <None Include="Sphere.vert" />

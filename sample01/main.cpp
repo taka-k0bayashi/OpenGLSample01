@@ -43,7 +43,7 @@ namespace
 
 }
 
-auto main() -> int{
+auto main() -> int {
 	// ‰Šú‰»
 	if (glfwInit() == GL_FALSE)
 	{
@@ -60,7 +60,7 @@ auto main() -> int{
 	glClearColor(1, 1, 1, 0);
 
 	glm::mat4 mat1 = glm::perspective(glm::pi<float>() * 0.2f, 1.0f, 0.1f, 100.0f);
-	glm::mat4 mat2 = glm::lookAt(glm::vec3(4.0f, 6.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	glm::mat4 mat2 = glm::lookAt(glm::vec3(8.0f, 12.0f, 4.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	glm::mat4 proj_mat = mat1 * mat2;
 
 	std::unique_ptr<const Shape> sphere(new Sphere(static_cast<GLsizei>(get_vertices().size()), get_vertices().data(), static_cast<GLsizei>(get_edges().size()), get_edges().data(), proj_mat));
