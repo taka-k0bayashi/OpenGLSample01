@@ -48,6 +48,9 @@
     <None Include="Sphere.geom">
       <Filter>ソース ファイル\glsl</Filter>
     </None>
+    <None Include="Sphere.comp">
+      <Filter>ソース ファイル\glsl</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
