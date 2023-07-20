@@ -40,8 +40,8 @@ Window::~Window()
 
 Window::operator bool()
 {
-	glfwWaitEvents();
-	//glfwPollEvents();
+	//glfwWaitEvents();
+	glfwPollEvents();
 
 	return !glfwWindowShouldClose(window);
 }

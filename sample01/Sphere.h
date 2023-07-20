@@ -38,5 +38,7 @@ public:
 	Sphere& operator=(const Sphere& obj) = delete;
 
 	void draw() const override;
+
+	void update() override;
 };
 

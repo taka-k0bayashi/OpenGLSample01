@@ -63,7 +63,7 @@ auto main() -> int {
 	glm::mat4 mat2 = glm::lookAt(glm::vec3(8.0f, 12.0f, 4.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	glm::mat4 proj_mat = mat1 * mat2;
 
-	std::unique_ptr<const Shape> sphere(new Sphere(static_cast<GLsizei>(get_vertices().size()), get_vertices().data(), static_cast<GLsizei>(get_edges().size()), get_edges().data(), proj_mat));
+	std::unique_ptr<Shape> sphere(new Sphere(static_cast<GLsizei>(get_vertices().size()), get_vertices().data(), static_cast<GLsizei>(get_edges().size()), get_edges().data(), proj_mat));
 
 	glLineWidth(1.5);
 
@@ -72,7 +72,8 @@ auto main() -> int {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		sphere->draw();
-
+		sphere->update();
+		
 		get_window().swapBuffers();
 	}
 

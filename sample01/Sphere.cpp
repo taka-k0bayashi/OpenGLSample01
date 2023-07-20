@@ -67,3 +67,8 @@ void Sphere::draw() const
 
 	this->program.unuse();
 }
+
+void Sphere::update()
+{
+	this->proj_mat = glm::rotate(this->proj_mat, static_cast<float>(0.01), glm::vec3(0, 0, 1));
+}
